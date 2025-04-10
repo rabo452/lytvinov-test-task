@@ -1,0 +1,11 @@
+<h2><a href="{{ path('index') }}"> return back </a></h2>
+
+<h1>Weather in {{ weather.city }}, {{ weather.country }}</h1>
+
+<ul>
+    <li>Temperature: {{ weather.temperature }}°C</li>
+    <li>Condition: {{ weather.condition }}</li>
+    <li>Humidity: {{ weather.humidity }}%</li>
+    <li>Wind Speed: {{ weather.wind_speed }} km/h</li>
+    <li>Last Updated: {{ weather.last_updated }}</li>
+</ul>

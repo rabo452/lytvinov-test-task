@@ -1,0 +1,22 @@
+parameters:
+    WEATHER_API_KEY: '%env(WEATHER_API_KEY)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # Makes classes in src/ available to be used as services
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # WeatherService definition
+    App\Service\WeatherService:
+        arguments:
+            $client: '@http_client'
+            $params: '@parameter_bag'

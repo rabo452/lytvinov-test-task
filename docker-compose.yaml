@@ -1,0 +1,26 @@
+services:
+  php-fpm:
+    build:
+      context: .
+    container_name: php-fpm
+    volumes:
+      - ./:/var/www/service
+    env_file:
+      - .env  # Load environment variables from the .env file
+    networks:
+      - app-network
+
+  nginx:
+    build:
+      context: ./services/nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - php-fpm
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
